@@ -90,9 +90,12 @@
         </div>
     {{- end -}}
 
-    {{- with $profile.disclaimer -}}
+    {{- if or (not $profile.disclaimer) (eq $profile.disclaimer "") -}}
+        {{- partial "disclaimer.html" . -}}
+    {{- else -}}
         <h3 class="home-disclaimer">
-            {{- . | safeHTML -}}
+            {{- $profile.disclaimer | safeHTML -}}
         </h3>
     {{- end -}}
+
 </div>
